@@ -1,0 +1,62 @@
+[
+{
+  "model": "app.someobjecttype",
+  "pk": 1,
+  "fields": {
+    "name": "integer"
+  }
+},
+{
+  "model": "app.someobjecttype",
+  "pk": 2,
+  "fields": {
+    "name": "string"
+  }
+},
+{
+  "model": "app.someobjecttype",
+  "pk": 3,
+  "fields": {
+    "name": "boolean"
+  }
+},
+{
+  "model": "app.someobjecttype",
+  "pk": 4,
+  "fields": {
+    "name": "float"
+  }
+},
+{
+  "model": "app.someobject",
+  "pk": 1,
+  "fields": {
+    "object_type": 1,
+    "description": "integer type"
+  }
+},
+{
+  "model": "app.someobject",
+  "pk": 2,
+  "fields": {
+    "object_type": 2,
+    "description": "string type"
+  }
+},
+{
+  "model": "app.someobject",
+  "pk": 3,
+  "fields": {
+    "object_type": 3,
+    "description": "boolean type"
+  }
+},
+{
+  "model": "app.someobject",
+  "pk": 4,
+  "fields": {
+    "object_type": 4,
+    "description": "float type"
+  }
+}
+]
