@@ -1,13 +1,7 @@
 from django.shortcuts import render
-from rest_framework.viewsets import ModelViewSet
 from .models import SomeObject, SomeObjectType
 from .serializers import SomeObjectTypeSerializer, SomeObjectSerializer, SomeObjectViewSerializer,SomeObjectTypeViewSerializer
 from rest_framework import generics, permissions 
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.models import User
-from django.views.generic import CreateView
-from app.permissions import IsOwnerOrReadOnly
-from rest_framework.authentication import TokenAuthentication
 
 
 

@@ -8,6 +8,8 @@
 
 <script>
 	import $ from 'jquery'
+	import Map from '@/components/Map.vue'
+  import Room from '@/components/Room.vue'
 
 	export default {
 		name: 'login',
@@ -31,15 +33,16 @@
 						console.log(response.auth_token)
 						alert('good')
 						sessionStorage.setItem("auth_token", response.auth_token)
+            this.$router.push({name: "Map"})
 					},
 					error: (response) => {
-					
+
 						if (response.status === 400){
 						alert('Неверно')
 
 						}
 					}
-				}) 
+				})
 			},
 		}
 	}

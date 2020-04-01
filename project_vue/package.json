@@ -1,5 +1,5 @@
 {
-  "name": "test_project_vue",
+  "name": "project_vue",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "admin",
@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "jquery": "^3.4.1",
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "ol": "^6.2.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.0.1",
+    "vuelayers": "^0.11.22"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -49,7 +51,8 @@
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "parcel": "1.11.0"
   },
   "engines": {
     "node": ">= 6.0.0",
