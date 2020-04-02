@@ -1,10 +1,7 @@
 <template>
-
-
-
-<div id="map" style="width: 100%; height: 400px;"></div>
-
-
+    <div id="mapOL">
+      Hi, i'm a map!
+    </div>
 </template>
 
 <script>
@@ -14,21 +11,30 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
-    var map = new ol.Map({
-      target: 'map'
-    });
-    var osmLayer = new ol.layer.Tile({
-      source: new ol.source.OSM()
-    });
-    map.addLayer(osmLayer);
-    var view = new ol.View({
-      center: [ 4188426.7147939987, 7508764.236877314 ],
-      zoom: 12
-    });
-    map.setView(view);
-  	export default {
-		name: 'Map',
-		}
+  export default {
+    name: 'Map',
+    data() {
+      return {
+
+      }
+    },
+    mounted() {
+      let map = new Map({
+        target: 'mapOL',
+        layers: [
+          new TileLayer({source: new OSM()})
+        ],
+        view: new View({
+          center: [4419926.7147939987,5982300.236877314],
+          zoom: 12
+        })
+      })
+    }
+  }
 </script>
-<style scoped>
+
+<style>
+  #mapOL {
+    height: 500px
+  }
 </style>
