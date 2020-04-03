@@ -15,7 +15,6 @@
 		name: 'login',
 		data(){
 			return{
-			  key: false,
 				login: '',
 				password: '',
 			}
