@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import SomeObject, SomeObjectType
 from .serializers import SomeObjectTypeSerializer, SomeObjectSerializer, SomeObjectViewSerializer,SomeObjectTypeViewSerializer
-from rest_framework import generics, permissions 
+from rest_framework import generics
 
 
 

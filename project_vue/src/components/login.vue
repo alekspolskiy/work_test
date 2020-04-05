@@ -32,16 +32,12 @@
 					success: (response) => {
 
 						console.log(response.auth_token)
-						alert('good')
 						sessionStorage.setItem("auth_token", response.auth_token)
             this.$router.push({name: "Map"})
-
 					},
 					error: (response) => {
-
 						if (response.status === 400){
 						alert('Неверно')
-
 						}
 					}
 				})
