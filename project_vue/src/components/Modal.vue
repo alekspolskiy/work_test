@@ -50,25 +50,25 @@ import {mapActions, mapGetters} from 'vuex'
 		  AddObject(){
 		      axios.post('http://127.0.0.1:8000/api/v1/app/objects/create/', {
 		        description: this.description,
-		        object_type: this.GetType()
+		        object_type: this.GetTypeIndex()
 		      })
 		      .catch (function (error){
             alert('not correct')
 		      })
 		  },
 
-      GetType(){
-          return this.names.indexOf(this.obj_type)
+      GetTypeIndex(){
+          return this.names.indexOf(this.obj_type)+1
         }
 
 		},
 		created(){
-		$.ajax({
-						url: 'http://127.0.0.1:8000/api/v1/app/object_types/all/',
-					type: 'GET',
-					success: (response) => {
-						for (var i=0; i<response.length; i++){
-						  this.names.push(response[i].name)
+		  $.ajax({
+			  url: 'http://127.0.0.1:8000/api/v1/app/object_types/all/',
+				type: 'GET',
+				success: (response) => {
+					for (var i=0; i<response.length; i++){
+					  this.names.push(response[i].name)
 						}
 					},
 				})

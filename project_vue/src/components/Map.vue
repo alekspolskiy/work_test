@@ -1,17 +1,17 @@
 <template>
   <div v-if='getToken()== true'>
     <div id="mapOL">
-    </div>
+  </div>
     <div>
-    <addModal></addModal>
-    </div>
-    <div id="marker" title="Marker"></div>
-    <div id="popup" class="ol-popup">
-     <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-     <div id="popup-content"></div>
- </div>
- </div>
+      <addModal></addModal>
    </div>
+    <div id="marker" title="Marker"></div>
+      <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+     <div id="popup-content"></div>
+    </div>
+ </div>
+ </div>
 </template>
 
 <script>
@@ -90,7 +90,7 @@ import {defaults as defaultControls, FullScreen} from 'ol/control'
 
     },
       created(){
-      				$.ajax({
+      	$.ajax({
 					url: 'http://127.0.0.1:8000/api/v1/app/objects/all/',
 					type: 'GET',
 
@@ -110,8 +110,8 @@ import {defaults as defaultControls, FullScreen} from 'ol/control'
             sessionStorage.setItem('obj_type_len', obj_type.length)
 					},
 				}),
-						$.ajax({
-						url: 'http://127.0.0.1:8000/api/v1/app/object_types/all/',
+				$.ajax({
+					url: 'http://127.0.0.1:8000/api/v1/app/object_types/all/',
 					type: 'GET',
 					success: (response) => {
             var names = []
@@ -119,100 +119,98 @@ import {defaults as defaultControls, FullScreen} from 'ol/control'
 						  names.push(response[i].name)
 						}
 						for (var i=0; i<names.length; i++){
-            sessionStorage.setItem([i+1].toString(), names[i])
-            console.log( [i+1].toString(), names[i])
+              sessionStorage.setItem([i+1].toString(), names[i])
             }
 					},
 				})
     },
 
     mounted() {
-     var layer = new TileLayer({
-  source: new OSM()
-});
+      var layer = new TileLayer({
+        source: new OSM()
+    });
 
-var map = new Map({
-  controls: defaultControls().extend([
-    new FullScreen()
-  ]),
-  layers: [layer],
-  target: 'mapOL',
-  view: new View({
-    center: fromLonLat([39.7232800, 47.2313500]),
-    zoom: 12
-  })
-});
+      var map = new Map({
+        controls: defaultControls().extend([
+          new FullScreen()
+      ]),
+      layers: [layer],
+      target: 'mapOL',
+      view: new View({
+        center: fromLonLat([39.7232800, 47.2313500]),
+        zoom: 12
+      })
+    });
 
-var popup = new Overlay({
-  element: document.getElementById('popup')
-});
-map.addOverlay(popup);
+      var popup = new Overlay({
+        element: document.getElementById('popup')
+      });
+      map.addOverlay(popup);
 
-var container = document.getElementById('popup');
- var content = document.getElementById('popup-content');
- var closer = document.getElementById('popup-closer');
+      var container = document.getElementById('popup');
+      var content = document.getElementById('popup-content');
+      var closer = document.getElementById('popup-closer');
 
-  var overlay = new Overlay({
-     element: container
- });
- map.addOverlay(overlay);
+      var overlay = new Overlay({
+        element: container
+      });
+      map.addOverlay(overlay);
 
-var obj_type_len = sessionStorage.getItem('obj_type_len')
-var desc = []
-var obj_type = []
-var obj_type_name = []
-for (var i=0; i<sessionStorage.getItem('obj_type').length;i++){
-  if (i%2 == 0){
-    obj_type.push(sessionStorage.getItem('obj_type')[i])
-  }
-}
+      var obj_type_len = sessionStorage.getItem('obj_type_len')
+      var desc = []
+      var obj_type = []
+      var obj_type_name = []
+      for (var i=0; i<sessionStorage.getItem('obj_type').length;i++){
+        if (i%2 == 0){
+          obj_type.push(sessionStorage.getItem('obj_type')[i])
+        }
+      }
 
-for (var i=0; i<obj_type_len;i++){
-   desc.push(sessionStorage.getItem('desc' + [i].toString()))
-}
+      for (var i=0; i<obj_type_len;i++){
+         desc.push(sessionStorage.getItem('desc' + [i].toString()))
+      }
 
-for (var i=0; i<obj_type.length; i++){
-  obj_type_name.push(sessionStorage.getItem('name' + obj_type[i].toString()))
-}
+      for (var i=0; i<obj_type.length; i++){
+        obj_type_name.push(sessionStorage.getItem('name' + obj_type[i].toString()))
+      }
 
-var des = []
-for (i=0;i<desc.length;i++){
-var s = '<b>' + 'Описание объекта: ' + desc[i] + '<br>' + 'Тип объекта: ' + obj_type_name[i] + '<b>'
-des.push(s)
-}
+      var description_object = []
+      for (i=0;i<desc.length;i++){
+      var description_string = '<b>' + 'Описание объекта: ' + desc[i] + '<br>' + 'Тип объекта: ' + obj_type_name[i] + '<b>'
+      description_object.push(description_string)
+      }
 
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
-}
+      function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+      }
 
-for (var i=0; i<desc.length;i++){
-  var cor_1 = getRandomArbitrary(39.7 ,39.76)
-  var cor_2 = getRandomArbitrary(47.21 ,47.27)
-  map.addLayer(this.createMarker(this.createFeature(des[i], cor_1, cor_2)))
-}
+      for (var i=0; i<desc.length;i++){
+        var cor_1 = getRandomArbitrary(39.7 ,39.76)
+        var cor_2 = getRandomArbitrary(47.21 ,47.27)
+        map.addLayer(this.createMarker(this.createFeature(description_object[i], cor_1, cor_2)))
+      }
 
-closer.onclick = function() {
-     overlay.setPosition(undefined);
-     closer.blur();
-     return false;
- };
+      closer.onclick = function() {
+        overlay.setPosition(undefined);
+        closer.blur();
+        return false;
+      };
 
- map.on('singleclick', function (event) {
-     var f = map.forEachFeatureAtPixel(
-        event.pixel,
-        function(ft, layer){return ft;}
-    );
-     if (f && f.values_.type == 'click') {
-         var coordinate = event.coordinate;
-         content.innerHTML = f.values_.desc;
-         overlay.setPosition(coordinate);
-     } else {
-         overlay.setPosition(undefined);
-         closer.blur();
-     }
- });
-},
-
+      map.on('singleclick', function (event) {
+        var f = map.forEachFeatureAtPixel(
+          event.pixel,
+            function(ft, layer){return ft;}
+        );
+          if (f && f.values_.type == 'click') {
+            var coordinate = event.coordinate;
+              content.innerHTML = f.values_.desc;
+              overlay.setPosition(coordinate);
+           } else {
+               overlay.setPosition(undefined);
+               closer.blur();
+              }
+       });
+    },
   }
 </script>
 
@@ -220,6 +218,4 @@ closer.onclick = function() {
   #mapOL {
     height: 500px
   }
-
-
 </style>

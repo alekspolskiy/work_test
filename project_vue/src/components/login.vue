@@ -9,7 +9,7 @@
 <script>
 	import $ from 'jquery'
 	import Map from '@/components/Map.vue'
-  import Room from '@/components/Room.vue'
+
 
 	export default {
 		name: 'login',

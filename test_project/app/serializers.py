@@ -18,7 +18,6 @@ class SomeObjectTypeViewSerializer(serializers.ModelSerializer):
 
 class SomeObjectSerializer(serializers.ModelSerializer):
 	class Meta:
-		#user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 		model = SomeObject
 		fields = '__all__'
 
